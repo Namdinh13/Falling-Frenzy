@@ -28,4 +28,12 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = new Vector3(input * moveSpeed, 0f, 0f);
         rb.linearVelocity = velocity;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Sheep"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
