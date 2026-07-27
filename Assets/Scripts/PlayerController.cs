@@ -3,9 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    void Update()
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float moveSpeed;
+
+    private float input;
+
+    private void Update()
     {
-        float input = 0f;
+        input = 0f;
 
         if (Keyboard.current.aKey.isPressed)
         {
@@ -16,7 +21,11 @@ public class PlayerController : MonoBehaviour
         {
             input = 1f;
         }
-        
-        Debug.Log(input);
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 velocity = new Vector3(input * moveSpeed, 0f, 0f);
+        rb.linearVelocity = velocity;
     }
 }
